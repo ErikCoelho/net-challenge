@@ -38,13 +38,13 @@ CREATE TABLE [dbo].[UserRole] (
 );
 
 CREATE TABLE [dbo].[Address] (
-    [Id] UNIQUEIDENTIFIER PRIMARY KEY,
-    [IbgeCode] CHAR(7)  NULL,
+    [Id] CHAR(7) PRIMARY KEY,
     [State] CHAR(2) NULL,
     [City] NVARCHAR(80) NULL
 );
 
-CREATE INDEX [IX_Addess_City] ON [dbo].[Addess]([City]);
-CREATE INDEX [IX_Addess_State] ON [dbo].[Addess]([State]);
+CREATE INDEX [IX_Addess_City] ON [dbo].[Address]([City]);
+CREATE INDEX [IX_Addess_State] ON [dbo].[Address]([State]);
 GO
+
 

@@ -8,16 +8,16 @@ namespace ChallengeIBGE.Infra.Contexts.AddressContext.UseCases.Create
 {
     public class Repository : IRepository
     {
-        public async Task<bool> AnyAsync(int ibgeCode, CancellationToken cancellationToken)
+        public async Task<bool> AnyAsync(int id, CancellationToken cancellationToken)
         {
             using var connection = Database.CreateConnection();
             await connection.OpenAsync(cancellationToken).ConfigureAwait(false);
 
-            var sql = "SELECT 1 FROM [dbo].[Address] WHERE [IbgeCode] = @IbgeCode";
+            var sql = "SELECT 1 FROM [dbo].[Address] WHERE [id] = @id";
 
             using var command = (SqlCommand)connection.CreateCommand();
             command.CommandText = sql;
-            command.Parameters.AddWithValue("@IbgeCode", ibgeCode);
+            command.Parameters.AddWithValue("@id", id);
 
             object result = await command.ExecuteScalarAsync(cancellationToken).ConfigureAwait(false);
 
@@ -29,11 +29,11 @@ namespace ChallengeIBGE.Infra.Contexts.AddressContext.UseCases.Create
             using var connection = Database.CreateConnection();
             await connection.OpenAsync(cancellationToken).ConfigureAwait(false);
 
-            var sql = "INSERT INTO [dbo].[Address] ([ibgeCode], [state], [city]) VALUES (@ibgeCode, @state, @city)";
+            var sql = "INSERT INTO [dbo].[Address] ([id], [state], [city]) VALUES (@id, @state, @city)";
 
             using var command = (SqlCommand)connection.CreateCommand();
             command.CommandText = sql;
-            command.Parameters.AddWithValue("@IbgeCode", address.IbgeCode);
+            command.Parameters.AddWithValue("@Id", address.Id);
             command.Parameters.AddWithValue("@State", address.State);
             command.Parameters.AddWithValue("@City", address.City);
 
