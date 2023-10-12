@@ -8,8 +8,11 @@
 
   <ItemGroup>
     <Folder Include="Contexts\AddressContext\" />
-    <Folder Include="Contexts\SharedContext\" />
     <Folder Include="Contexts\UserContext\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Flunt" Version="2.0.5" />
   </ItemGroup>
 
 </Project>
