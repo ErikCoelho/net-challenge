@@ -22,4 +22,4 @@ public class Response : SharedContext.UseCases.Response
     public ResponseData? Data { get; set; }
 }
 
-public record ResponseData(string City, string State, long IbgeCode);
+public record ResponseData(string City, string State, int IbgeCode);

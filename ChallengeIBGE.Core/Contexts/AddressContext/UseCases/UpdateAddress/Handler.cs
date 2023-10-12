@@ -66,7 +66,7 @@ public class Handler : IRequestHandler<Request, Response>
         #endregion
     }
 
-    private void UpdateAddress(Address address, string updatedCity, string updatedState, long updatedIbgeCode)
+    private void UpdateAddress(Address address, string updatedCity, string updatedState, int updatedIbgeCode)
     {
         address.UpdateCity(updatedCity);
         address.UpdateState(updatedState);
