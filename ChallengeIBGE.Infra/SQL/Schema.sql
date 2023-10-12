@@ -37,12 +37,13 @@ CREATE TABLE [dbo].[UserRole] (
     CONSTRAINT [FK_UserRole_Role] FOREIGN KEY ([RoleId]) REFERENCES [dbo].[Role]([Id]) ON DELETE CASCADE
 );
 
-CREATE TABLE [dbo].[IBGE] (
-    [Id] CHAR(7) PRIMARY KEY,
+CREATE TABLE [dbo].[Addess] (
+    [IbgeCode] CHAR(7) PRIMARY KEY,
     [State] CHAR(2) NULL,
     [City] NVARCHAR(80) NULL
 );
 
-CREATE INDEX [IX_IBGE_City] ON [dbo].[IBGE]([City]);
-CREATE INDEX [IX_IBGE_State] ON [dbo].[IBGE]([State]);
+CREATE INDEX [IX_Addess_City] ON [dbo].[Addess]([City]);
+CREATE INDEX [IX_Addess_State] ON [dbo].[Addess]([State]);
 GO
+
