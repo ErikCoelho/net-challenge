@@ -29,7 +29,7 @@ public class Handler : IRequestHandler<Request, Response>
 		Address address;
 		try
 		{
-			address = new(request.City, request.State, request.IbgeCode);
+			address = new(request.City, request.State, request.Id);
 		}
 		catch (Exception ex)
 		{
@@ -40,7 +40,7 @@ public class Handler : IRequestHandler<Request, Response>
 		#region Verify if already exists
 		try
 		{
-            var exists = await _repository.AnyAsync(request.IbgeCode, cancellationToken);
+            var exists = await _repository.AnyAsync(request.Id, cancellationToken);
 			if (exists)
 				return new Response("Address already exists.", 400);
 		}
@@ -62,7 +62,7 @@ public class Handler : IRequestHandler<Request, Response>
 		#endregion
 
 		#region Response
-		return new Response("Address created successfully.", new ResponseData(address.City, address.State, address.IbgeCode));
+		return new Response("Address created successfully.", new ResponseData(address.City, address.State, address.Id));
 		#endregion
 	}
 }

@@ -4,6 +4,6 @@ namespace ChallengeIBGE.Core.Contexts.AddressContext.UseCases.UpdateAddress.Cont
 
 public interface IRepository
 {
-    Task<Address?> GetAddressByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task<Address?> GetAddressByIdAsync(int id, CancellationToken cancellationToken);
     Task SaveAsync(Address address, CancellationToken cancellationToken);
 }

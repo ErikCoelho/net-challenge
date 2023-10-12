@@ -4,6 +4,6 @@ namespace ChallengeIBGE.Core.Contexts.AddressContext.UseCases.CreateAddress.Cont
 
 public interface IRepository
 {
-    Task<bool> AnyAsync(int ibgeCode, CancellationToken cancellationToken);
+    Task<bool> AnyAsync(int id, CancellationToken cancellationToken);
     Task SaveAsync(Address address, CancellationToken cancellationToken);
 }

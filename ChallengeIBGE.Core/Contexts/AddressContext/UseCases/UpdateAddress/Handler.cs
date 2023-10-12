@@ -42,7 +42,7 @@ public class Handler : IRequestHandler<Request, Response>
         #region Update Address
         try
         {
-            UpdateAddress(address, request.UpdatedCity, request.UpdatedState, request.UpdatedIbgeCode);
+            UpdateAddress(address, request.Id, request.UpdatedCity, request.UpdatedState);
         }
         catch
         {
@@ -62,14 +62,14 @@ public class Handler : IRequestHandler<Request, Response>
         #endregion
 
         #region Response
-        return new Response("Address updated successfully.", new ResponseData(address.City, address.State, address.IbgeCode));
+        return new Response("Address updated successfully.", new ResponseData(address.Id, address.City, address.State));
         #endregion
     }
 
-    private void UpdateAddress(Address address, string updatedCity, string updatedState, int updatedIbgeCode)
+    private void UpdateAddress(Address address, int updatedId, string updatedCity, string updatedState)
     {
         address.UpdateCity(updatedCity);
         address.UpdateState(updatedState);
-        address.UpdateIbgeCode(updatedIbgeCode);
+        address.UpdateId(updatedId);
     }
 }
