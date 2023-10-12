@@ -37,8 +37,9 @@ CREATE TABLE [dbo].[UserRole] (
     CONSTRAINT [FK_UserRole_Role] FOREIGN KEY ([RoleId]) REFERENCES [dbo].[Role]([Id]) ON DELETE CASCADE
 );
 
-CREATE TABLE [dbo].[Addess] (
-    [IbgeCode] CHAR(7) PRIMARY KEY,
+CREATE TABLE [dbo].[Address] (
+    [Id] UNIQUEIDENTIFIER PRIMARY KEY,
+    [IbgeCode] CHAR(7)  NULL,
     [State] CHAR(2) NULL,
     [City] NVARCHAR(80) NULL
 );

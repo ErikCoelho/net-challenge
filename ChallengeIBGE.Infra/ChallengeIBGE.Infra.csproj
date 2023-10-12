@@ -5,13 +5,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Contexts\AddressContext\" />
-    <Folder Include="Contexts\UserContext\" />
-    <Folder Include="Data\" />
+    <PackageReference Include="Dapper" Version="2.1.4" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.1.4" />
+    <Folder Include="Contexts\AddressContext\UseCases\Update\" />
+    <Folder Include="Contexts\AddressContext\UseCases\Read\" />
   </ItemGroup>
 
   <PropertyGroup>
