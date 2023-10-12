@@ -1,3 +1,4 @@
+using ChallengeIBGE.Core.Contexts.SharedContext.Extensions;
 using System.Text.RegularExpressions;
 
 namespace ChallengeIBGE.Core.Contexts.SharedContext.ValueObjects
@@ -18,13 +19,15 @@ namespace ChallengeIBGE.Core.Contexts.SharedContext.ValueObjects
                 throw new Exception("Invalid Email");
 
             if(!EmailRegex().IsMatch(address))
-            throw new Exception("Invalid Email");
+                throw new Exception("Invalid Email");
         }
 
         public string Address { get; private set; } = string.Empty;
+        public string HashAddress => Address.ToBase64();
 
         public static implicit operator string(Email email) => email.ToString();
         public static implicit operator Email(string address) => new(address);
+        public override string ToString() => Address;
 
         [GeneratedRegex(Pattern)]
         private static partial Regex EmailRegex();
