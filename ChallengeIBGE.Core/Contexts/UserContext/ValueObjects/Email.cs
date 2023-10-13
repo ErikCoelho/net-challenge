@@ -22,7 +22,7 @@ namespace ChallengeIBGE.Core.Contexts.SharedContext.ValueObjects
                 throw new Exception("Invalid Email");
         }
 
-        public string Address { get; private set; } = string.Empty;
+        public string Address { get; set; } = string.Empty;
         public string HashAddress => Address.ToBase64();
 
         public static implicit operator string(Email email) => email.ToString();
