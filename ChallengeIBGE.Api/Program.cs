@@ -13,6 +13,6 @@ var configuration = new ConfigurationBuilder()
 
 var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-Database.ConnectionString = connectionString;
+Database.ConnectionString = connectionString!;
 
 app.Run();
