@@ -4,7 +4,6 @@ namespace ChallengeIBGE.Core.Contexts.AddressContext.UseCases.DeleteAddress.Cont
 
 public interface IRepository
 {
-    void DeleteAddress(Address? address, CancellationToken cancellationToken);
-    Task<Address?> GetAddressByIdAsync(int id, CancellationToken cancellationToken);
-    Task SaveAsync(CancellationToken cancellationToken);
+    Task<bool> DeleteAddressAsync(Address? address, CancellationToken cancellationToken);
+    Task<Address> GetAddressByIdAsync(int id, CancellationToken cancellationToken);
 }

@@ -1,9 +1,8 @@
-﻿using ChallengeIBGE.Core.Contexts.SharedContext.Entity;
-
-namespace ChallengeIBGE.Core.Contexts.AddressContext.Entities;
+﻿namespace ChallengeIBGE.Core.Contexts.AddressContext.Entities;
 
 public class Address
 {
+    public Address() { }
     public Address(string city, string state, int id)
     {
         Id = Id;

@@ -46,5 +46,3 @@ CREATE TABLE [dbo].[Address] (
 CREATE INDEX [IX_Addess_City] ON [dbo].[Address]([City]);
 CREATE INDEX [IX_Addess_State] ON [dbo].[Address]([State]);
 GO
-
-
