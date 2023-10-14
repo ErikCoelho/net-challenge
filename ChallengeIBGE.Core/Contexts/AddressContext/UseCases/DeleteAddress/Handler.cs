@@ -48,17 +48,6 @@ public class Handler : IRequestHandler<Request, Response>
         }
         #endregion
 
-        #region Persist
-        try
-        {
-            
-        }
-        catch
-        {
-            return new Response("Failed to persist data.", 500);
-        }
-        #endregion
-
         #region Response
         return new Response("Address deleted successfully.", new ResponseData(request.Id));
         #endregion
