@@ -40,7 +40,10 @@ public class Handler : IRequestHandler<Request, Response>
         #region Delete address
         try
         {
-            await _repository.DeleteAddressAsync(address, cancellationToken);
+            if(address != null)
+            {
+                await _repository.DeleteAddressAsync(address, cancellationToken);
+            }
         }
         catch (Exception ex)
         {

@@ -19,7 +19,7 @@ namespace ChallengeIBGE.Infra.Contexts.AddressContext.UseCases.Update
             command.CommandText = sql;
             command.Parameters.AddWithValue("@id", id);
 
-            Address address = await connection.QuerySingleOrDefaultAsync<Address>(sql, new { id }).ConfigureAwait(false);
+            Address? address = await connection.QuerySingleOrDefaultAsync<Address>(sql, new { id }).ConfigureAwait(false);
 
             return address;
         }

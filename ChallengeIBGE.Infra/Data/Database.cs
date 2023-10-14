@@ -4,7 +4,7 @@ namespace ChallengeIBGE.Infra.Data
 {
     public static class Database
     {
-        public static string ConnectionString { get; set; }
+        public static string ConnectionString { get; set; } = null!;
 
         public static SqlConnection CreateConnection()
         {
