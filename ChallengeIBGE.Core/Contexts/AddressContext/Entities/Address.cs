@@ -5,7 +5,7 @@ public class Address
     public Address() { }
     public Address(string city, string state, int id)
     {
-        Id = Id;
+        Id = id;
         City = city;
         State = state;
     }
