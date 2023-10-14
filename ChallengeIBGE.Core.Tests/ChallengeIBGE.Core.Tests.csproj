@@ -27,7 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Contexts\AddressContext\" />
     <Folder Include="Contexts\UserContext\" />
   </ItemGroup>
 
