@@ -30,6 +30,8 @@ public class Handler : IRequestHandler<Request, Response>
         try
         {
             address = await _repository.GetAddressByIdAsync(request.Id, cancellationToken);
+            if(address == null)
+                return new Response("Address not found.", 404);
         }
         catch
         {

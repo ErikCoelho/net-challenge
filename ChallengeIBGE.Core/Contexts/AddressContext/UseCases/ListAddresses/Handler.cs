@@ -27,11 +27,11 @@ public class Handler : IRequestHandler<Request, Response>
         #endregion
 
         #region List Addresses
-        Address? address;
+        List<Address>? addresses;
         try
         {
-            address = await GetAddress(request, cancellationToken);
-            if (address == null)
+            addresses = await GetAddress(request, cancellationToken);
+            if (addresses == null)
                 return new Response("Address not found.", 404);
         }
         catch (Exception ex)
@@ -41,11 +41,11 @@ public class Handler : IRequestHandler<Request, Response>
         #endregion
 
         #region Response
-        return new Response("", new ResponseData(address?.Id, address?.City, address?.State));
+        return new Response("", new ResponseData(addresses!));
         #endregion
     }
 
-    public async Task<Address?> GetAddress(Request request, CancellationToken cancellationToken)
+    public async Task<List<Address>?> GetAddress(Request request, CancellationToken cancellationToken)
     {
         if (!string.IsNullOrEmpty(request.City))
             return await _repository.GetAddressByCity(request.City, cancellationToken);

@@ -10,6 +10,6 @@ public static class Specification
         .IsGreaterOrEqualsThan(request.City, 2, "City", "City must have 2 or more characters.")
         .IsLowerOrEqualsThan(request.City, 30, "City", "City must have a maximum of 30 characters.")
         .IsGreaterOrEqualsThan(request.State, 2, "State", "State must have 2 or more characters.")
-        .IsLowerOrEqualsThan(request.State, 30, "State", "State must have a maximum of 30 characters.")
-        .IsGreaterOrEqualsThan(request.Id, 1, "IbgeCode", "IbgeCode cannot be zero or null");
+        .IsLowerOrEqualsThan(request.State, 2, "State", "State must have a maximum of 2 characters.")
+        .IsLowerOrEqualsThan(1, request.Id, "Id", "Id cannot be zero or null");
 }

@@ -1,4 +1,5 @@
-﻿using Flunt.Notifications;
+﻿using ChallengeIBGE.Core.Contexts.AddressContext.Entities;
+using Flunt.Notifications;
 
 namespace ChallengeIBGE.Core.Contexts.AddressContext.UseCases.ListAddresses;
 
@@ -22,4 +23,4 @@ public class Response : SharedContext.UseCases.Response
     public ResponseData? Data { get; set; }
 }
 
-public record ResponseData(int? Id, string? City, string? State);
+public record ResponseData(List<Address?> Addresses);
