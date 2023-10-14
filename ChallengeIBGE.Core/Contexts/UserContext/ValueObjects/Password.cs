@@ -20,7 +20,12 @@ public class Password : ValueObject
 
     public bool VerifyHash(string plainTextPassword) => Verify(Hash, plainTextPassword);
 
-    public string Hash { get; set; } = string.Empty;
+    public string Hash { get;  set; } = string.Empty;
+
+    public override string ToString()
+    {
+        return Hash;
+    }
 
     public static string Generate(short length = 16, bool includeSpecialChars = true, bool UpperCase = false)
     {
