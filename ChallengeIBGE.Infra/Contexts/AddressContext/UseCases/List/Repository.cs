@@ -7,7 +7,7 @@ namespace ChallengeIBGE.Infra.Contexts.AddressContext.UseCases.List
 {
     public class Repository : IRepository
     {
-        public async Task<List<Address>> GetAddressByCityAsync(string city, CancellationToken cancellationToken)
+        public async Task<List<Address>?> GetAddressByCityAsync(string city, CancellationToken cancellationToken)
         {
             using var connection = Database.CreateConnection();
             await connection.OpenAsync(cancellationToken).ConfigureAwait(false);
@@ -20,7 +20,7 @@ namespace ChallengeIBGE.Infra.Contexts.AddressContext.UseCases.List
             return addresses.ToList();
         }
 
-        public async Task<List<Address>> GetAddressByIdAsync(int id, CancellationToken cancellationToken)
+        public async Task<List<Address>?> GetAddressByIdAsync(int id, CancellationToken cancellationToken)
         {
             using var connection = Database.CreateConnection();
             await connection.OpenAsync(cancellationToken).ConfigureAwait(false);
@@ -33,7 +33,7 @@ namespace ChallengeIBGE.Infra.Contexts.AddressContext.UseCases.List
             return addresses.ToList();
         }
 
-        public async Task<List<Address>> GetAddressByStateAsync(string state, CancellationToken cancellationToken)
+        public async Task<List<Address>?> GetAddressByStateAsync(string state, CancellationToken cancellationToken)
         {
             using var connection = Database.CreateConnection();
             await connection.OpenAsync(cancellationToken).ConfigureAwait(false);

@@ -29,6 +29,8 @@ public class Handler : IRequestHandler<Request, Response>
         try
         {
             user = await _repository.GetUserByIdAsync(request.Id, cancellationToken);
+            if (user == null)
+                return new Response("User not found.", 404);
         }
         catch
         {
