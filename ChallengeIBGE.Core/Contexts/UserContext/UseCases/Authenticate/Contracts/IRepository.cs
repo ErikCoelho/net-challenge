@@ -4,5 +4,5 @@ namespace ChallengeIBGE.Core.Contexts.UserContext.UseCases.Authenticate.Contract
 
 public interface IRepository
 {
-    Task<User?> GetUserByEmail(string email, CancellationToken cancellationToken);
+    Task<User?> GetUserByEmailAsync(string email, CancellationToken cancellationToken);
 }
