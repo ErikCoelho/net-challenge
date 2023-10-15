@@ -1,5 +1,6 @@
 ﻿using ChallengeIBGE.Core.Contexts.UserContext.Entities;
 using ChallengeIBGE.Core.Contexts.UserContext.UseCases.Authenticate.Contracts;
+using ChallengeIBGE.Core.Contexts.UserContext.ValueObjects;
 using MediatR;
 
 namespace ChallengeIBGE.Core.Contexts.UserContext.UseCases.Authenticate;
@@ -30,7 +31,7 @@ public class Handler : IRequestHandler<Request, Response>
         User? user;
         try
         {
-            user = await _repository.GetUserByEmail(request.Email, cancellationToken);
+            user = await _repository.GetUserByEmailAsync(request.Email, cancellationToken);
             if (user is null)
                 return new Response("User not found.", 404);
         }

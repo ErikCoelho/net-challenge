@@ -11,12 +11,12 @@ namespace ChallengeIBGE.Infra.Contexts.UserContext.UseCases.Delete
 
         public Repository(DataContext context) => _context = context;
 
-        public async Task<User?> GetUserById(Guid id, CancellationToken cancellationToken)
+        public async Task<User?> GetUserByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             return await _context.Users.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
-        public async Task DeleteUser(User user, CancellationToken cancellationToken)
+        public async Task DeleteUserAsync(User user, CancellationToken cancellationToken)
         {
             _context.Remove(user);
             await _context.SaveChangesAsync(cancellationToken);

@@ -48,10 +48,10 @@ public class Handler : IRequestHandler<Request, Response>
     public async Task<List<Address>?> GetAddress(Request request, CancellationToken cancellationToken)
     {
         if (!string.IsNullOrEmpty(request.City))
-            return await _repository.GetAddressByCity(request.City, cancellationToken);
+            return await _repository.GetAddressByCityAsync(request.City, cancellationToken);
         else if (!string.IsNullOrEmpty(request.State))
-            return await _repository.GetAddressByState(request.State, cancellationToken);
+            return await _repository.GetAddressByStateAsync(request.State, cancellationToken);
         else
-            return await _repository.GetAddressById(request.Id, cancellationToken);
+            return await _repository.GetAddressByIdAsync(request.Id, cancellationToken);
     }
 }

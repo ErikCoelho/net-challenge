@@ -4,7 +4,7 @@ namespace ChallengeIBGE.Core.Contexts.AddressContext.UseCases.ListAddresses.Cont
 
 public interface IRepository
 {
-    Task<List<Address>?> GetAddressByCity(string city, CancellationToken cancellationToken);
-    Task<List<Address>?> GetAddressById(int id, CancellationToken cancellationToken);
-    Task<List<Address>?> GetAddressByState(string state, CancellationToken cancellationToken);
+    Task<List<Address>> GetAddressByCityAsync(string city, CancellationToken cancellationToken);
+    Task<List<Address>> GetAddressByIdAsync(int id, CancellationToken cancellationToken);
+    Task<List<Address>> GetAddressByStateAsync(string state, CancellationToken cancellationToken);
 }

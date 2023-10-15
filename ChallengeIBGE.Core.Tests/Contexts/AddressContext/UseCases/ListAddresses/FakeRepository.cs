@@ -13,7 +13,7 @@ public class FakeRepository : IRepository
     };
         
         
-    public Task<List<Address>?> GetAddressByCity(string city, CancellationToken cancellationToken)
+    public Task<List<Address>?> GetAddressByCityAsync(string city, CancellationToken cancellationToken)
     {
         List<Address>? listCities = new();
         foreach(var address in _addresses)
@@ -31,7 +31,7 @@ public class FakeRepository : IRepository
         return Task.FromResult<List<Address>?>(null);
     }
 
-    public Task<List<Address>?> GetAddressById(int id, CancellationToken cancellationToken)
+    public Task<List<Address>?> GetAddressByIdAsync(int id, CancellationToken cancellationToken)
     {
         List<Address>? listCities = new();
         foreach (var address in _addresses)
@@ -49,7 +49,7 @@ public class FakeRepository : IRepository
         return Task.FromResult<List<Address>?>(null);
     }
 
-    public Task<List<Address>?> GetAddressByState(string state, CancellationToken cancellationToken)
+    public Task<List<Address>?> GetAddressByStateAsync(string state, CancellationToken cancellationToken)
     {
         List<Address>? listCities = new();
         foreach (var address in _addresses)

@@ -28,7 +28,7 @@ public class Handler : IRequestHandler<Request, Response>
         User? user;
         try
         {
-            user = await _repository.GetUserById(request.Id, cancellationToken);
+            user = await _repository.GetUserByIdAsync(request.Id, cancellationToken);
         }
         catch
         {

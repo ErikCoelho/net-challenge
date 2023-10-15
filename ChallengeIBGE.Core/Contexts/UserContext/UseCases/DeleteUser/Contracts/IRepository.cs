@@ -4,6 +4,6 @@ namespace ChallengeIBGE.Core.Contexts.UserContext.UseCases.DeleteUser.Contracts;
 
 public interface IRepository
 {
-    Task<User?> GetUserById(Guid id, CancellationToken cancellationToken);
-    Task DeleteUser(User user, CancellationToken cancellationToken);
+    Task<User?> GetUserByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task DeleteUserAsync(User user, CancellationToken cancellationToken);
 }
