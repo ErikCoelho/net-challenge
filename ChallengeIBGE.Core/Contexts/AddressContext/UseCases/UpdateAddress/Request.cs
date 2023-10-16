@@ -2,4 +2,4 @@
 
 namespace ChallengeIBGE.Core.Contexts.AddressContext.UseCases.UpdateAddress;
 
-public record Request(int Id, string UpdatedCity, string UpdatedState) : IRequest<Response>;
+public record Request(int Id, string City, string State) : IRequest<Response>;

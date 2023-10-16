@@ -42,7 +42,7 @@ public class Handler : IRequestHandler<Request, Response>
         #region Update Address
         try
         {
-            UpdateAddress(address, request.Id, request.UpdatedCity, request.UpdatedState);
+            UpdateAddress(address, request.Id, request.City, request.State);
         }
         catch
         {
@@ -66,10 +66,10 @@ public class Handler : IRequestHandler<Request, Response>
         #endregion
     }
 
-    private void UpdateAddress(Address address, int updatedId, string updatedCity, string updatedState)
+    private static void UpdateAddress(Address address, int id, string city, string state)
     {
-        address.UpdateCity(updatedCity);
-        address.UpdateState(updatedState);
-        address.UpdateId(updatedId);
+        address.UpdateCity(city);
+        address.UpdateState(state);
+        address.UpdateId(id);
     }
 }
