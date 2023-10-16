@@ -41,7 +41,10 @@ public static class AddressExtension
                 Core.Contexts.AddressContext.UseCases.CreateAddress.Request,
                 Core.Contexts.AddressContext.UseCases.CreateAddress.Response> handler) =>
         {
-
+            var result = await handler.Handle(request, new CancellationToken());
+            return result.IsSuccess
+                ? Results.Created($"api/v1/address/create/{result.Data?.Id}", result)
+                : Results.Json(result, statusCode: result.Status);
         });
         #endregion
 
@@ -52,7 +55,10 @@ public static class AddressExtension
                 Core.Contexts.AddressContext.UseCases.DeleteAddress.Request,
                 Core.Contexts.AddressContext.UseCases.DeleteAddress.Response> handler) =>
         {
-
+            var result = await handler.Handle(request, new CancellationToken());
+            return result.IsSuccess
+                ? Results.Ok("Address deleted successfully.")
+                : Results.Json(result, statusCode: result.Status);
         });
         #endregion
 
@@ -63,7 +69,10 @@ public static class AddressExtension
                 Core.Contexts.AddressContext.UseCases.ListAddresses.Request,
                 Core.Contexts.AddressContext.UseCases.ListAddresses.Response> handler) =>
         {
-
+            var result = await handler.Handle(request, new CancellationToken());
+            return result.IsSuccess
+                ? Results.Ok(result)
+                : Results.Json(result, statusCode: result.Status);
         });
         #endregion
 
@@ -74,7 +83,10 @@ public static class AddressExtension
                 Core.Contexts.AddressContext.UseCases.UpdateAddress.Request,
                 Core.Contexts.AddressContext.UseCases.UpdateAddress.Response> handler) =>
         {
-
+            var result = await handler.Handle(request, new CancellationToken());
+            return result.IsSuccess
+                ? Results.Ok(result)
+                : Results.Json(result, statusCode: result.Status);
         });
         #endregion
     }

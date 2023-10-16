@@ -41,13 +41,22 @@ public static class UserExtension
     public static void MapUserEndpoints(this WebApplication app)
     {
         #region Authenticate
-        app.MapPost("api/v1/authenticate", async (
+        app.MapPost("api/v1/user/authenticate", async (
             [FromBody] Core.Contexts.UserContext.UseCases.Authenticate.Request request,
             [FromServices] IRequestHandler<
                 Core.Contexts.UserContext.UseCases.Authenticate.Request,
                 Core.Contexts.UserContext.UseCases.Authenticate.Response> handler) =>
         {
+            var result = await handler.Handle(request, new CancellationToken());
 
+            if (!result.IsSuccess)
+                return Results.Json(result, statusCode: result.Status);
+
+            if (result.Data is null)
+                return Results.Json(result, statusCode: 500);
+
+            result.Data.Token = JwtExtension.Generate(result.Data);
+            return Results.Ok(result);
         });
         #endregion
 
@@ -58,7 +67,10 @@ public static class UserExtension
                 Core.Contexts.UserContext.UseCases.CreateUser.Request,
                 Core.Contexts.UserContext.UseCases.CreateUser.Response> handler) =>
         {
-
+            var result = await handler.Handle(request, new CancellationToken());
+            return result.IsSuccess
+                ? Results.Created($"api/v1/user/create/{result.Data?.Id}", result)
+                : Results.Json(result, statusCode: result.Status);
         });
         #endregion
 
@@ -69,7 +81,10 @@ public static class UserExtension
                 Core.Contexts.UserContext.UseCases.DeleteUser.Request,
                 Core.Contexts.UserContext.UseCases.DeleteUser.Response> handler) =>
         {
-
+            var result = await handler.Handle(request, new CancellationToken());
+            return result.IsSuccess
+                ? Results.Ok("User deleted successfully.")
+                : Results.Json(result, statusCode: result.Status);
         });
         #endregion
 
@@ -80,7 +95,11 @@ public static class UserExtension
                 Core.Contexts.UserContext.UseCases.SearchUser.Request,
                 Core.Contexts.UserContext.UseCases.SearchUser.Response> handler) =>
         {
-
+            var result = await handler.Handle(request, new CancellationToken());
+            return result.IsSuccess
+                ? Results.Ok(result)
+                : Results.Json(result, statusCode: result.Status);
+            
         });
         #endregion
 
@@ -91,7 +110,10 @@ public static class UserExtension
                 Core.Contexts.UserContext.UseCases.UpdateUser.Request,
                 Core.Contexts.UserContext.UseCases.UpdateUser.Response> handler) =>
         {
-
+            var result = await handler.Handle(request, new CancellationToken());
+            return result.IsSuccess
+                ? Results.Ok(result)
+                : Results.Json(result, statusCode: result.Status);
         });
         #endregion
     }
