@@ -4,7 +4,7 @@ namespace ChallengeIBGE.Core.Contexts.AddressContext.UseCases.ListAddresses;
 
 public class Request : IRequest<Response>
 {
-    private Request() { }
+    public Request() { }
 
     public int Id { get; private set; }
     public string? City { get; private set; } = string.Empty;
