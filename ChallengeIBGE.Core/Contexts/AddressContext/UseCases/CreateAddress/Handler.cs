@@ -29,7 +29,7 @@ public class Handler : IRequestHandler<Request, Response>
 		Address address;
 		try
 		{
-			address = new(request.City, request.State, request.Id);
+			address =  CreateAddress(request);
 		}
 		catch (Exception ex)
 		{
@@ -65,4 +65,7 @@ public class Handler : IRequestHandler<Request, Response>
 		return new Response("Address created successfully.", new ResponseData(address.City, address.State, address.Id));
 		#endregion
 	}
+
+    private static Address CreateAddress(Request request)
+        => new(request.City, request.State, request.Id);
 }
