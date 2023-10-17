@@ -28,13 +28,15 @@ namespace ChallengeIBGE.Infra.Contexts.AddressContext.UseCases.Create
             using var connection = Database.CreateConnection();
             await connection.OpenAsync(cancellationToken).ConfigureAwait(false);
 
-            var sql = "INSERT INTO [dbo].[Address] ([id], [state], [city]) VALUES (@id, @state, @city)";
+            var sql = "SET IDENTITY_INSERT Address ON;" +
+                      "INSERT INTO [dbo].[Address] ([id], [state], [city]) VALUES (@id, @state, @city)" +
+                      "SET IDENTITY_INSERT Address OFF;";
 
             using var command = (SqlCommand)connection.CreateCommand();
             command.CommandText = sql;
-            command.Parameters.AddWithValue("@Id", address.Id);
-            command.Parameters.AddWithValue("@State", address.State);
-            command.Parameters.AddWithValue("@City", address.City);
+            command.Parameters.AddWithValue("@id", address.Id);
+            command.Parameters.AddWithValue("@state", address.State);
+            command.Parameters.AddWithValue("@city", address.City);
 
             int affectedRows = await command.ExecuteNonQueryAsync(cancellationToken).ConfigureAwait(false);
             return affectedRows > 0;
