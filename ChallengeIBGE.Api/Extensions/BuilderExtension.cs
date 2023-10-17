@@ -48,4 +48,13 @@ public static class BuilderExtension
 
     public static void AddMediatr(this WebApplicationBuilder builder)
         => builder.Services.AddMediatR(options => options.RegisterServicesFromAssembly(typeof(Configuration).Assembly));
+
+    public static void AddSwaggerGen(this WebApplicationBuilder builder)
+    {
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen(config =>
+        {
+            config.CustomSchemaIds(x => x.FullName);
+        });
+    }
 }

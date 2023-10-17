@@ -64,11 +64,12 @@ public static class AddressExtension
 
         #region ListAddresses
         app.MapGet("api/v1/address/search", async (
-            [FromBody] Core.Contexts.AddressContext.UseCases.ListAddresses.Request request,
+            [FromQuery] int? id, string? city, string? state,
             [FromServices] IRequestHandler<
                 Core.Contexts.AddressContext.UseCases.ListAddresses.Request,
                 Core.Contexts.AddressContext.UseCases.ListAddresses.Response> handler) =>
         {
+            var request = new Core.Contexts.AddressContext.UseCases.ListAddresses.Request(id, city, state);
             var result = await handler.Handle(request, new CancellationToken());
             return result.IsSuccess
                 ? Results.Ok(result)

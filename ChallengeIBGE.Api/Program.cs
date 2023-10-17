@@ -13,10 +13,18 @@ builder.AddUserContext();
 builder.AddAddressContext();
 
 builder.AddMediatr();
+builder.AddSwaggerGen();
 #endregion
 
 #region App
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
@@ -37,8 +45,3 @@ Database.ConnectionString = connectionString!;
 
 app.Run();
 #endregion
-
-
-//app.MapGet("/", () => "Hello World!");
-
-

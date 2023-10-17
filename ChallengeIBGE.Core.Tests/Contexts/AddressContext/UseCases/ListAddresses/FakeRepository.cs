@@ -31,13 +31,13 @@ public class FakeRepository : IRepository
         return Task.FromResult<List<Address>?>(null);
     }
 
-    public Task<List<Address>?> GetAddressByIdAsync(int id, CancellationToken cancellationToken)
+    public Task<List<Address>?> GetAddressByIdAsync(int? id, CancellationToken cancellationToken)
     {
         List<Address>? listCities = new();
         foreach (var address in _addresses)
         {
             if (id == address?.Id)
-                listCities.Add(address);
+                listCities.Add(address!);
         }
 
         if (listCities.Count > 0)

@@ -20,7 +20,7 @@ namespace ChallengeIBGE.Infra.Contexts.AddressContext.UseCases.List
             return addresses.ToList();
         }
 
-        public async Task<List<Address>?> GetAddressByIdAsync(int id, CancellationToken cancellationToken)
+        public async Task<List<Address>?> GetAddressByIdAsync(int? id, CancellationToken cancellationToken)
         {
             using var connection = Database.CreateConnection();
             await connection.OpenAsync(cancellationToken).ConfigureAwait(false);

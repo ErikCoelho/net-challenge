@@ -37,7 +37,7 @@ public static class UserExtension
             Infra.Contexts.UserContext.UseCases.Update.Repository>();
         #endregion
     }
-
+    
     public static void MapUserEndpoints(this WebApplication app)
     {
         #region Authenticate
@@ -89,12 +89,13 @@ public static class UserExtension
         #endregion
 
         #region SearchUser
-        app.MapGet("api/v1/user/search", async (
-            [FromBody] Core.Contexts.UserContext.UseCases.SearchUser.Request request,
+        app.MapGet("api/v1/user/search/{id}", async (
+            [FromRoute] Guid id,
             [FromServices] IRequestHandler<
                 Core.Contexts.UserContext.UseCases.SearchUser.Request,
                 Core.Contexts.UserContext.UseCases.SearchUser.Response> handler) =>
         {
+            var request = new Core.Contexts.UserContext.UseCases.SearchUser.Request(id);
             var result = await handler.Handle(request, new CancellationToken());
             return result.IsSuccess
                 ? Results.Ok(result)
