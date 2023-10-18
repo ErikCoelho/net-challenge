@@ -69,6 +69,6 @@ public class Handler : IRequestHandler<Request, Response>
     private static void UpdateUser(User user, Request request)
     {
         user.UpdateName(request.UpdatedFirstName, request.UpdatedLastName);
-        user.UpdateEmail(request.UpdatedEmail);
+        user.UpdateEmail(request.UpdatedEmail.ToLower());
     }
 }

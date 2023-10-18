@@ -31,7 +31,7 @@ public class Handler : IRequestHandler<Request, Response>
         User? user;
         try
         {
-            user = await _repository.GetUserByEmailAsync(request.Email, cancellationToken);
+            user = await _repository.GetUserByEmailAsync(request.Email.ToLower(), cancellationToken);
             if (user is null)
                 return new Response("User not found.", 404);
         }

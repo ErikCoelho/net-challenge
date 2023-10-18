@@ -68,9 +68,9 @@ public class Handler : IRequestHandler<Request, Response>
         #endregion
     }
 
-    public User CreateUser(Request request)
+    public static User CreateUser(Request request)
     {
-        User user = new(request.FirstName, request.LastName, request.Email, request.Password);
+        User user = new(request.FirstName, request.LastName, request.Email.ToLower(), request.Password);
         return user;
     }
 }
