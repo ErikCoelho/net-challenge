@@ -11,22 +11,19 @@ public class Repository : IRepository
     public Repository(DataContext context)
         =>  _context = context;
 
-    public async Task SaveAsync(User user, CancellationToken cancellationToken)
-    {
-        _context.Users.Remove(user);
-        await _context.SaveChangesAsync();
-    }
+    public async Task<User?> GetUserByIdAsync(Guid userId, CancellationToken cancellationToken)
+        => await _context.Users.Include(e => e.Roles).FirstOrDefaultAsync(e => e.Id == userId, cancellationToken);
+    public async Task<Role?> GetRoleByNameAsync(string role, CancellationToken cancellationToken)
+      => await _context.Roles.FirstOrDefaultAsync(x => x.Name == role, cancellationToken);
 
-    public async Task RemoveRoleFromEmployeeAsync(Guid idEmployee, string role, CancellationToken cancellationToken)
+    public async Task RemoveRoleFromUserAsync(User? user, string role, CancellationToken cancellationToken)
     {
-        var employee = await _context.Users.Include(e => e.Roles)
-            .FirstOrDefaultAsync(e => e.Id == idEmployee, cancellationToken);
-        if (employee != null)
+        if (user != null)
         {
-            var roleToRemove = employee.Roles.FirstOrDefault(r => r.Name == role);
+            var roleToRemove = user.Roles.FirstOrDefault(r => r.Name == role);
             if (roleToRemove != null)
             {
-                employee.Roles.Remove(roleToRemove);
+                user.Roles.Remove(roleToRemove);
             }
         }
 

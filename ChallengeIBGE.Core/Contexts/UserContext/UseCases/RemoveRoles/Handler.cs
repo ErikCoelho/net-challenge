@@ -25,10 +25,28 @@ public class Handler : IRequestHandler<Request, Response>
         }
         #endregion
 
+        #region Get and Role
+        User? user;
+        Role? role;
+        try
+        {
+            user = await _repository.GetUserByIdAsync(request.UserId, new CancellationToken());
+            if (user is null)
+                return new Response("User Not Found", 404);
+            role = await _repository.GetRoleByNameAsync(request.Role, new CancellationToken());
+            if (role is null)
+                return new Response("Role Not Found", 404);
+        }
+        catch
+        {
+            return new Response("Unable to retrieve data", 500);
+        }
+        #endregion
+
         #region Remove Role from User
         try
         {
-            await _repository.RemoveRoleFromEmployeeAsync(request.UserId, request.Role, cancellationToken);
+            await _repository.RemoveRoleFromUserAsync(user, request.Role, cancellationToken);
         }
         catch (Exception ex)
         {

@@ -5,6 +5,12 @@ namespace ChallengeIBGE.Core.Contexts.UserContext.Entities;
 
 public class Role : Entity
 {
+    public Role(Guid id, string name)
+    {
+        Id = id;
+        Name = name;
+    }
+
     public string Name { get; set; } = string.Empty;
 
     [JsonIgnore]
