@@ -1,5 +1,6 @@
 ﻿namespace ChallengeIBGE.Api.Extensions.UserContextExtensions;
 
+using ChallengeIBGE.Core.Contexts.AddressContext.UseCases.CreateAddress;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,8 +37,20 @@ public static class UserExtension
             Core.Contexts.UserContext.UseCases.UpdateUser.Contracts.IRepository,
             Infra.Contexts.UserContext.UseCases.Update.Repository>();
         #endregion
+
+        #region AddRole
+        builder.Services.AddTransient<
+            Core.Contexts.UserContext.UseCases.AddRoles.Contracts.IRepository,
+            Infra.Contexts.UserContext.UseCases.AddRole.Repository>();
+        #endregion
+
+        #region RemoveRole
+        builder.Services.AddTransient<
+            Core.Contexts.UserContext.UseCases.RemoveRoles.Contracts.IRepository,
+            Infra.Contexts.UserContext.UseCases.RemoveRoles.Repository>();
+        #endregion
     }
-    
+
     public static void MapUserEndpoints(this WebApplication app)
     {
         #region Authenticate
@@ -110,6 +123,34 @@ public static class UserExtension
             [FromServices] IRequestHandler<
                 Core.Contexts.UserContext.UseCases.UpdateUser.Request,
                 Core.Contexts.UserContext.UseCases.UpdateUser.Response> handler) =>
+        {
+            var result = await handler.Handle(request, new CancellationToken());
+            return result.IsSuccess
+                ? Results.Ok(result)
+                : Results.Json(result, statusCode: result.Status);
+        });
+        #endregion
+
+        #region AddRole
+        app.MapPut("api/v1/user/role/add", async (
+            [FromBody] Core.Contexts.UserContext.UseCases.AddRoles.Request request,
+            [FromServices] IRequestHandler<
+                Core.Contexts.UserContext.UseCases.AddRoles.Request,
+                Core.Contexts.UserContext.UseCases.AddRoles.Response> handler) =>
+        {
+            var result = await handler.Handle(request, new CancellationToken());
+            return result.IsSuccess
+                ? Results.Ok(result)
+                : Results.Json(result, statusCode: result.Status);
+        });
+        #endregion
+
+        #region RemoveRole
+        app.MapPut("api/v1/user/role/remove", async (
+            [FromBody] Core.Contexts.UserContext.UseCases.RemoveRoles.Request request,
+            [FromServices] IRequestHandler<
+                Core.Contexts.UserContext.UseCases.RemoveRoles.Request,
+                Core.Contexts.UserContext.UseCases.RemoveRoles.Response> handler) =>
         {
             var result = await handler.Handle(request, new CancellationToken());
             return result.IsSuccess

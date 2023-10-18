@@ -1,6 +1,7 @@
 ﻿using ChallengeIBGE.Core.Contexts.SharedContext.Entity;
 using ChallengeIBGE.Core.Contexts.SharedContext.ValueObjects;
 using ChallengeIBGE.Core.Contexts.UserContext.ValueObjects;
+using System.Text.Json.Serialization;
 
 namespace ChallengeIBGE.Core.Contexts.UserContext.Entities;
 
@@ -24,6 +25,7 @@ public class User : Entity
     public Email Email{ get; private set; } = null!;
     public Password Password { get; private set; } = null!;
 
+    [JsonIgnore]
     public List<Role> Roles { get; set; } = new();
 
     public void UpdateName(string firstName, string lastName)
@@ -34,4 +36,10 @@ public class User : Entity
 
     public void UpdateEmail(string email)
         => Email.Address = email;
+
+    public void AddRole(Role role)
+        => Roles.Add(role);
+
+    public void RemoveRole(Role role)
+        => Roles.Remove(role);
 }

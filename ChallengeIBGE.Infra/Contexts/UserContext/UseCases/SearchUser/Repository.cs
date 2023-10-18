@@ -10,5 +10,5 @@ public class Repository : IRepository
     private readonly DataContext _context;
     public Repository(DataContext context) => _context = context;
     public async Task<User?> GetUserById(Guid id, CancellationToken cancellationToken)
-        => await _context.Users.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+        => await _context.Users.Include(x => x.Roles).Where(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
 }
