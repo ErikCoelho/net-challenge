@@ -1,40 +1,43 @@
 ﻿<h1 align="center">🌍 Sistema de Gerenciamento de Dados do IBGE 🌍</h1>
 
-{#section-0}
+## Tópicos
 
-## • Tópicos
-
-1. [Agradecimentos](#section-1)
-2. [Projeto](#section-2)
-3. [Principais Recursos](#section-3)
-4. [Tecnologias](#section-4)
-5. [Apresentação Gráfica da Estrutura do Projeto](#section-5)
-6. [Endpoints](#section-6)
-	- [Endpoints de Usuário](#section-7)
-	- [Endpoints de Endereços](#section-8)
-7. [Contribuidores](#section-9)
+1. <a href="#agradecimentos">Agradecimentos</a><br>
+2. <a href="#projeto">Projeto</a><br>
+3. <a href="#recursos">Principais Recursos</a><br>
+4. <a href="#tecnologias">Tecnologias</a><br>
+5. <a href="#estrutura">Apresentação Gráfica da Estrutura do Projeto</a><br>
+6. <a href="#endpoints">Endpoints</a><br>
+7. <a href="#userEndpoint">Endpoints de Usuário</a><br>
+8. <a href="#addressEndpoint">Endpoints de Endereços</a><br>
+9. <a href="#contribuidores">Contribuidores</a><br>
 
 
-{#section-1}
+<section id="agradecimentos"></section>
 
-<div style="text-align: center;">
+<div align="center" margin="100px">
 	<h2>Agradecimentos</h2> 
+	<br>
 	<a href="https://balta.io/">
 		<img src="https://baltaio.blob.core.windows.net/static/images/dark/balta-logo.svg" style="width: 250px;"></img>
 	</a>
-	<p>Gostaríamos de agradecer ao André Baltieri, que, por meio de sua plataforma, está promovendo o conhecimento por meio deste desafio. 
-	Foi possível colocar em prática vários dos cursos que realizamos até o momento. Além disso, ele incentivou o networking entre os alunos 
-	ao formar grupos para o desenvolvimento do projeto, bem como na sua comunidade no Discord, onde pudemos tirar dúvidas.</p>
 </div>
+<br>
 
-{#section-2}
+- Gostaríamos de agradecer ao André Baltieri, que, por meio de sua plataforma, está promovendo o conhecimento por meio deste desafio. 
+Foi possível colocar em prática vários dos cursos que realizamos até o momento. Além disso, ele incentivou o networking entre os alunos 
+ao formar grupos para o desenvolvimento do projeto, bem como na sua comunidade no Discord, onde pudemos tirar dúvidas.
+<br>
+
+<section id="projeto"> </section>
+
 ## 📋 Projeto
 - O Sistema de Gerenciamento de Dados do IBGE é uma aplicação web construída para facilitar a consulta, atualização, exclusão e criação de registros em uma base de dados simulada do Instituto Brasileiro de Geografia e Estatísticas (IBGE).
 
-[Voltar aos tópicos](#section-0)
+<br>
+<section id="recursos"></section>
 
-{#section-3}
-### 📃Principais Recursos
+## 📃Principais Recursos</h2>
 1. Consulta de Dados: Os usuários podem realizar consultas na base de dados simulada do IBGE para obter informações como:
 	- Cidades de um Estado
 	- Pesquisar uma Cidade 
@@ -42,9 +45,9 @@
 3. Segurança de Senhas: Por questão de segurança, todas as senhas são armazenadas de forma criptografada, garantindo que ninguém, nem mesmo os administradores do sistema, tenham acesso direto às senhas dos usuários.
 4. Autorização e Controle de Acesso: Algumas partes da API exigem níveis de permissão específicos, com cargos e privilégios associados
 
-[Voltar aos tópicos](#section-0)
+<br>
+<section id="tecnologias"></section>
 
-{#section-4}
 ## 💻 Tecnologias
 - .NET
 - Dapper
@@ -54,23 +57,24 @@
 - Flunt
 - Swagger
 
-[Voltar aos tópicos](#section-0)
+<br>
+<section id="estrutura"></section>
 
-{#section-5}
 ## 🔎 Apresentação Gráfica da Estrutura do Projeto
-<div style="text-align: center;">
+<div align="center">
 	<img src="./ChallengeIBGE.Api/img/api-endpoints.png" style="width: 300px;border: 1px solid;"></img><br>
 	<img src="./ChallengeIBGE.Api/img/requirements-structure.png" style="width: 900px;border: 1px solid;"></img><br>
 	<img src="./ChallengeIBGE.Api/img/folder-structure.png" style="width: 900px;border: 1px solid;"></img<br>
 	<img src="./ChallengeIBGE.Api/img/use-cases.png" style="width: 900px;border: 1px solid;"></img><br>
 </div>
 
-[Voltar aos tópicos](#section-0)
+<br>
+<section id="endpoints"></section>
 
-{#section-6}
 ## 📌 Endpoints
 
-{#section-7}
+<section id="userEndpoint"></section>
+
 ### Endpoints de Usuário
 - Autenticação
 ```
@@ -191,9 +195,8 @@
 }
 ```
 
-[Voltar aos tópicos](#section-0)
+<section id="addressEndpoint"></section>
 
-{#section-8}
 ### Endpoints de Endereços
 - Criar endereço
 ```
@@ -367,9 +370,9 @@
 }
 ```
 
-[Voltar aos tópicos](#section-0)
+<br>
+<section id="contribuidores"></section>
 
-{#section-9}
 ## ©️ Contribuidores
 
 - Erik Coelho
