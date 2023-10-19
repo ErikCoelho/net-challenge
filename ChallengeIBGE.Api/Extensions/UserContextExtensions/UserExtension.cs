@@ -98,7 +98,7 @@ public static class UserExtension
             return result.IsSuccess
                 ? Results.Ok("User deleted successfully.")
                 : Results.Json(result, statusCode: result.Status);
-        });
+        }).RequireAuthorization(options => options.RequireRole("Admin"));
         #endregion
 
         #region SearchUser
@@ -114,7 +114,7 @@ public static class UserExtension
                 ? Results.Ok(result)
                 : Results.Json(result, statusCode: result.Status);
             
-        });
+        }).RequireAuthorization(options => options.RequireRole("Admin", "User"));
         #endregion
 
         #region UpdateUser
@@ -128,7 +128,7 @@ public static class UserExtension
             return result.IsSuccess
                 ? Results.Ok(result)
                 : Results.Json(result, statusCode: result.Status);
-        });
+        }).RequireAuthorization(options => options.RequireRole("Admin"));
         #endregion
 
         #region AddRole
@@ -142,7 +142,7 @@ public static class UserExtension
             return result.IsSuccess
                 ? Results.Ok(result)
                 : Results.Json(result, statusCode: result.Status);
-        });
+        }).RequireAuthorization(options => options.RequireRole("Admin"));
         #endregion
 
         #region RemoveRole
@@ -156,7 +156,7 @@ public static class UserExtension
             return result.IsSuccess
                 ? Results.Ok(result)
                 : Results.Json(result, statusCode: result.Status);
-        });
+        }).RequireAuthorization(options => options.RequireRole("Admin"));
         #endregion
     }
 }
