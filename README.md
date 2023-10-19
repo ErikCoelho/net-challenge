@@ -1,29 +1,377 @@
-﻿# 🌍 ChallengeIBGE 🌍
+﻿<h1 align="center">🌍 Sistema de Gerenciamento de Dados do IBGE 🌍</h1>
 
-## 🚧 Projeto em Desenvolvimento 🚧
+{#section-0}
 
-## 📌 Projeto
-- 
+## • Tópicos
 
+1. [Agradecimentos](#section-1)
+2. [Projeto](#section-2)
+3. [Principais Recursos](#section-3)
+4. [Tecnologias](#section-4)
+5. [Apresentação Gráfica da Estrutura do Projeto](#section-5)
+6. [Endpoints](#section-6)
+	- [Endpoints de Usuário](#section-7)
+	- [Endpoints de Endereços](#section-8)
+7. [Contribuidores](#section-9)
+
+
+{#section-1}
+
+<div style="text-align: center;">
+	<h2>Agradecimentos</h2> 
+	<a href="https://balta.io/">
+		<img src="https://baltaio.blob.core.windows.net/static/images/dark/balta-logo.svg" style="width: 250px;"></img>
+	</a>
+	<p>Gostaríamos de agradecer ao André Baltieri, que, por meio de sua plataforma, está promovendo o conhecimento por meio deste desafio. 
+	Foi possível colocar em prática vários dos cursos que realizamos até o momento. Além disso, ele incentivou o networking entre os alunos 
+	ao formar grupos para o desenvolvimento do projeto, bem como na sua comunidade no Discord, onde pudemos tirar dúvidas.</p>
+</div>
+
+{#section-2}
+## 📋 Projeto
+- O Sistema de Gerenciamento de Dados do IBGE é uma aplicação web construída para facilitar a consulta, atualização, exclusão e criação de registros em uma base de dados simulada do Instituto Brasileiro de Geografia e Estatísticas (IBGE).
+
+[Voltar aos tópicos](#section-0)
+
+{#section-3}
+### 📃Principais Recursos
+1. Consulta de Dados: Os usuários podem realizar consultas na base de dados simulada do IBGE para obter informações como:
+	- Cidades de um Estado
+	- Pesquisar uma Cidade 
+2. Gerenciamento de Usuários: O projeto oferece um sistema de cadastro de usuários com autenticação por email e senha, garantindo que apenas pessoas autorizadas tenham acesso à determinadas funcionalidades.
+3. Segurança de Senhas: Por questão de segurança, todas as senhas são armazenadas de forma criptografada, garantindo que ninguém, nem mesmo os administradores do sistema, tenham acesso direto às senhas dos usuários.
+4. Autorização e Controle de Acesso: Algumas partes da API exigem níveis de permissão específicos, com cargos e privilégios associados
+
+[Voltar aos tópicos](#section-0)
+
+{#section-4}
 ## 💻 Tecnologias
 - .NET
 - Dapper
+- Entity Framework
 - SqlServer
 - MediatR
 - Flunt
-- SecureIdentity
+- Swagger
 
-## 📃 Funcionalidades
-- 
+[Voltar aos tópicos](#section-0)
 
-## 🔎 Endpoints
-- 
+{#section-5}
+## 🔎 Apresentação Gráfica da Estrutura do Projeto
+<div style="text-align: center;">
+	<img src="./ChallengeIBGE.Api/img/api-endpoints.png" style="width: 300px;border: 1px solid;"></img><br>
+	<img src="./ChallengeIBGE.Api/img/requirements-structure.png" style="width: 900px;border: 1px solid;"></img><br>
+	<img src="./ChallengeIBGE.Api/img/folder-structure.png" style="width: 900px;border: 1px solid;"></img<br>
+	<img src="./ChallengeIBGE.Api/img/use-cases.png" style="width: 900px;border: 1px solid;"></img><br>
+</div>
 
+[Voltar aos tópicos](#section-0)
+
+{#section-6}
+## 📌 Endpoints
+
+{#section-7}
+### Endpoints de Usuário
+- Autenticação
+```
+• URL: 
+	https://localhost:7111/api/v1/user/authenticate
+
+• Json de Inserção:
+{
+	"email": "teste@teste.com",
+	"password": "ABC123abc123"
+}
+
+• Json de Retorno:
+{
+	"data": {
+		"id": "15d848b7-a088-4c2c-a38d-92fbea6c765b",
+		"email": "teste@teste.com",
+		"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjE1ZDg0OGI3LWEwODgtNGMyYy1hMzhkLTkyZmJlYTZjNzY1YiIsInVuaXF1ZV9uYW1lIjoidGVzdGVAdGVzdGUuY29tIiwicm9sZSI6IlVzZXIiLCJuYmYiOjE2OTc3MzU4NDUsImV4cCI6MTY5Nzc3OTA0NSwiaWF0IjoxNjk3NzM1ODQ1fQ.28v32dXByv_u0ppSCIrRn1beIxrDVyB3STsjGE2VvS4",
+		"roles": [
+			"User"
+		]
+	},
+	"message": "",
+	"status": 200,
+	"isSuccess": true,
+	"notifications": null
+}
+```
+- Criar usuário
+```
+• URL: 
+	https://localhost:7111/api/v1/user/create
+
+• Json de Inserção:
+{
+	"firstName": "NomeUsuario",
+	"lastName": "SobrenomeUsuario",
+	"email": "emailusuario@email.com",
+	"password": "ABC123abc123"
+}
+
+• Json de Retorno:
+{
+	"data": {
+		"id": "ea8ba056-6b9e-4730-bea2-9943ea8fbbc9",
+		"name": "NomeUsuario",
+		"email": "emailusuario@email.com"
+	},
+	"message": "User created successfully.",
+	"status": 201,
+	"isSuccess": true,
+	"notifications": null
+}
+```
+
+- Buscar usuário
+```
+• URL: 
+	https://localhost:7111/api/v1/user/search/{id} 
+
+• URL de Busca:
+	https://localhost:7111/api/v1/user/search/ea8ba056-6b9e-4730-bea2-9943ea8fbbc9
+
+• Json de Retorno:
+{
+	"data": {
+		"id": "ea8ba056-6b9e-4730-bea2-9943ea8fbbc9",
+		"firstName": "NomeUsuario",
+		"lastName": "SobrenomeUsuario",
+		"email": "emailusuario@email.com",
+		"roles": []
+	},
+	"message": "",
+	"status": 200,
+	"isSuccess": true,
+	"notifications": null
+}
+```
+- Atualizar usuário
+```
+• URL: 
+	https://localhost:7111/api/v1/user/update
+
+• Json de Inserção:
+{
+	"id": "ea8ba056-6b9e-4730-bea2-9943ea8fbbc9",
+	"updatedFirstName": "NovoNomeUsuario",
+	"updatedLastName": "NovoSobrenomeUsuario",
+	"updatedEmail": "novoemailusuario@email.com"
+}
+
+• Json de Retorno:
+{
+	"data": {
+		"id": "ea8ba056-6b9e-4730-bea2-9943ea8fbbc9",
+		"firstName": "NovoNomeUsuario",
+		"email": "novoemailusuario@email.com"
+	},
+	"message": "User updated successfully",
+	"status": 200,
+	"isSuccess": true,
+	"notifications": null
+}
+```
+- Deletar usuário
+```
+• URL: 
+	https://localhost:7111/api/v1/user/delete
+
+• Json de Inserção:
+{
+	"id": "ea8ba056-6b9e-4730-bea2-9943ea8fbbc9"
+}
+
+• Json de Retorno:
+{
+	"User deleted successfully."
+}
+```
+
+[Voltar aos tópicos](#section-0)
+
+{#section-8}
+### Endpoints de Endereços
+- Criar endereço
+```
+• URL: 
+	https://localhost:7111/api/v1/address/create
+
+• Json de Inserção:
+{
+    "id": 1010101,
+    "city": "Balta City",
+    "state": "SP"
+}
+
+• Json de Retorno:
+{
+    "data": {
+        "city": "Balta City",
+        "state": "SP",
+        "id": 1010101
+    },
+    "message": "Address created successfully.",
+    "status": 201,
+    "isSuccess": true,
+    "notifications": null
+}
+```
+- Atualizar endereço
+```
+• URL: 
+	https://localhost:7111/api/v1/address/update
+
+• Json de Inserção:
+{
+    "id": 1010101,
+    "city": "Balta",
+    "state": "SP"
+}
+
+• Json de Retorno:
+{
+    "data": {
+        "id": 1010101,
+        "city": "Balta",
+        "state": "SP"
+    },
+    "message": "Address updated successfully.",
+    "status": 200,
+    "isSuccess": true,
+    "notifications": null
+}
+```
+- Deletar endereço
+```
+• URL: 
+	https://localhost:7111/api/v1/address/delete
+
+• Json de Inserção:
+{
+    "id": 1010101
+}
+
+• Json de Retorno:
+{
+	"Address deleted successfully."
+}
+```
+- Buscar endereço por ID
+```
+• URL: 
+	https://localhost:7111/api/v1/address/search?id={id}
+
+• URL de Busca:
+	https://localhost:7111/api/v1/address/search?id=4106902
+
+• Json de Retorno:
+{
+    "data": {
+        "addresses": [
+            {
+                "id": 4106902,
+                "city": "Curitiba",
+                "state": "PR"
+            }
+        ]
+    },
+    "message": "",
+    "status": 200,
+    "isSuccess": true,
+    "notifications": null
+}
+```
+- Buscar endereço por Cidade
+```
+• URL: 
+	https://localhost:7111/api/v1/address/search?city={city}
+
+• URL de Busca:
+	https://localhost:7111/api/v1/address/search?city=Curitiba
+
+• Json de Retorno:
+{
+	"data": {
+		"addresses": [
+			{
+				"id": 4106902,
+				"city": "Curitiba",
+				"state": "PR"
+			},
+			{
+				"id": 4204806,
+				"city": "Curitibanos",
+				"state": "SC"
+			}
+		]
+	},
+	"message": "",
+	"status": 200,
+	"isSuccess": true,
+	"notifications": null
+}
+```
+- Buscar endereço por Estado
+```
+• URL: 
+	https://localhost:7111/api/v1/address/search?state={state}
+
+• URL de Busca:
+	https://localhost:7111/api/v1/address/search?state=SC
+
+• Json de Retorno:
+{
+	"data": {
+		"addresses": [
+			{
+				"id": 4200051,
+				"city": "Abdon Batista",
+				"state": "SC"
+			},
+			{
+				"id": 4200101,
+				"city": "Abelardo Luz",
+				"state": "SC"
+			},
+			{
+				"id": 4200200,
+				"city": "Agrolândia",
+				"state": "SC"
+			},
+			{
+				"id": 4200309,
+				"city": "Agronômica",
+				"state": "SC"
+			},
+			{
+				"id": 4200408,
+				"city": "Água Doce",
+				"state": "SC"
+			},
+			{
+				"id": 4200507,
+				"city": "Águas de Chapecó",
+				"state": "SC"
+			}
+			...
+		]
+	},
+	"message": "",
+	"status": 200,
+	"isSuccess": true,
+	"notifications": null
+}
+```
+
+[Voltar aos tópicos](#section-0)
+
+{#section-9}
 ## ©️ Contribuidores
 
-- Daniel Feitosa
-	- [GitHub](https://github.com/danielfeitosa4)
-	- [Linkedin](https://www.linkedin.com/in/daniel-feitosa/)
 - Erik Coelho
 	- [GitHub](https://github.com/ErikCoelho)
 	- [Linkedin](https://www.linkedin.com/in/erik-coelho-56121318b/)
