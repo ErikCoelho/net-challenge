@@ -34,14 +34,5 @@ app.UseAuthorization();
 app.MapUserEndpoints();
 app.MapAddressEndpoints();
 
-var configuration = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-            .Build();
-
-var connectionString = configuration.GetConnectionString("DefaultConnection");
-
-Database.ConnectionString = connectionString!;
-
 app.Run();
 #endregion

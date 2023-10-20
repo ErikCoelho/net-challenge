@@ -18,8 +18,19 @@ public static class BuilderExtension
     }
 
     public static void AddDatabase(this WebApplicationBuilder builder)
-        => builder.Services.AddDbContext<DataContext>(options =>
+    {
+        builder.Services.AddDbContext<DataContext>(options =>
             options.UseSqlServer(Configuration.Database.ConnectionString, assembly => assembly.MigrationsAssembly("ChallengeIBGE.Api")));
+
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .Build();
+
+        var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+        Database.ConnectionString = connectionString!;
+    }
 
     public static void AddJwtAuthentication(this WebApplicationBuilder builder)
     {
