@@ -1,4 +1,5 @@
-﻿using ChallengeIBGE.Core.Contexts.AddressContext.Entities;
+﻿using ChallengeIBGE.Core;
+using ChallengeIBGE.Core.Contexts.AddressContext.Entities;
 using ChallengeIBGE.Core.Contexts.AddressContext.UseCases.CreateAddress.Contracts;
 using ChallengeIBGE.Infra.Data;
 using Dapper;
@@ -10,7 +11,7 @@ public class Repository : IRepository
 {
     public async Task<bool> AnyAsync(int id, CancellationToken cancellationToken)
     {
-        using var connection = Database.CreateConnection();
+        using var connection = new SqlConnection(Configuration.Database.ConnectionString);
         await connection.OpenAsync(cancellationToken).ConfigureAwait(false);
 
         var sql = "SELECT COUNT(1) FROM [dbo].[Address] WHERE [id] = @id";
@@ -25,7 +26,7 @@ public class Repository : IRepository
 
     public async Task<bool> SaveAsync(Address address, CancellationToken cancellationToken)
     {
-        using var connection = Database.CreateConnection();
+        using var connection = new SqlConnection(Configuration.Database.ConnectionString);
         await connection.OpenAsync(cancellationToken).ConfigureAwait(false);
 
         var sql = "SET IDENTITY_INSERT Address ON;" +

@@ -33,10 +33,6 @@ var configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
     .Build();
 
-var connectionString = configuration.GetConnectionString("DefaultConnection");
-
-Database.ConnectionString = connectionString!;
-
 app.MapUserEndpoints();
 app.MapAddressEndpoints();
 
