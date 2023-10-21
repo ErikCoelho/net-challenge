@@ -142,7 +142,9 @@ public static class UserExtension
             return result.IsSuccess
                 ? Results.Ok(result)
                 : Results.Json(result, statusCode: result.Status);
-        }).RequireAuthorization(options => options.RequireRole("Admin"));
+        }).RequireAuthorization(options => options.RequireRole("Admin", "User"));
+        /* For the purpose of project evaluation and testing, this endpoint currently permits users to add roles.
+        However, in a real-world scenario, only administrators should be granted permission to add roles.*/
         #endregion
 
         #region RemoveRole

@@ -62,7 +62,7 @@ ao formar grupos para o desenvolvimento do projeto, bem como na sua comunidade n
 
 ## 🔎 Apresentação Gráfica da Estrutura do Projeto
 <div align="center">
-	<img src="./ChallengeIBGE.Api/img/api-endpoints-roles.png" style="width: 300px;border: 1px solid;"></img><br>
+	<img src="./ChallengeIBGE.Api/img/api-endpoints.png" style="width: 300px;border: 1px solid;"></img><br>
 	<img src="./ChallengeIBGE.Api/img/requirements-structure.png" style="width: 900px;border: 1px solid;"></img><br>
 	<img src="./ChallengeIBGE.Api/img/folder-structure.png" style="width: 900px;border: 1px solid;"></img<br>
 	<img src="./ChallengeIBGE.Api/img/use-cases.png" style="width: 900px;border: 1px solid;"></img><br>
