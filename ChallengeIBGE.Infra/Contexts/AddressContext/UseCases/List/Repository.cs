@@ -1,7 +1,9 @@
-﻿using ChallengeIBGE.Core.Contexts.AddressContext.Entities;
+﻿using ChallengeIBGE.Core;
+using ChallengeIBGE.Core.Contexts.AddressContext.Entities;
 using ChallengeIBGE.Core.Contexts.AddressContext.UseCases.ListAddresses.Contracts;
 using ChallengeIBGE.Infra.Data;
 using Dapper;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace ChallengeIBGE.Infra.Contexts.AddressContext.UseCases.List;
@@ -12,19 +14,16 @@ public class Repository : IRepository
     public Repository(DataContext context) => _context = context;
     public async Task<List<Address>?> GetAddressByCityAsync(string city, CancellationToken cancellationToken)
     {
+        using var connection = new SqlConnection(Configuration.Database.ConnectionString);
 
-        var addresses = await _context.Addresses.Where(a => a.City.Contains(city)).ToListAsync(cancellationToken).ConfigureAwait(false);
+        await connection.OpenAsync(cancellationToken).ConfigureAwait(false);
 
-        return addresses;
-        //using var connection = Database.CreateConnection();
-        //await connection.OpenAsync(cancellationToken).ConfigureAwait(false);
+        var sql = "SELECT * FROM [dbo].[Address] WHERE [City] LIKE @city";
+        var parameters = new { city = $"%{city}%" };
 
-        //var sql = "SELECT * FROM [dbo].[Address] WHERE [City] LIKE @city";
-        //var parameters = new { city = $"%{city}%" };
+        var addresses = await connection.QueryAsync<Address>(sql, parameters).ConfigureAwait(false);
 
-        //var addresses = await connection.QueryAsync<Address>(sql, parameters).ConfigureAwait(false);
-
-        //return addresses.ToList();
+        return addresses.ToList();
     }
 
     public async Task<List<Address>?> GetAddressByIdAsync(int? id, CancellationToken cancellationToken)
