@@ -28,6 +28,15 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+var configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+    .Build();
+
+var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+Database.ConnectionString = connectionString!;
+
 app.MapUserEndpoints();
 app.MapAddressEndpoints();
 
