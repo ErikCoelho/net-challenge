@@ -72,7 +72,13 @@ ao formar grupos para o desenvolvimento do projeto, bem como na sua comunidade n
 <section id="endpoints"></section>
 
 ## 📌 Endpoints
-
+- Aqui estão todos os endpoints da API. Sempre que um novo usuário é cadastrado, ele é atribuído ao cargo 
+de "User" por padrão. Isso permite que ele adicione outros cargos disponíveis no banco de dados. 
+Para obter autorização para utilizar os recursos relacionados a cargos, é necessário ter o cargo de "Admin". 
+Lembre-se de que, sempre que um novo cargo for adicionado, será necessário fazer uma nova autenticação para 
+evitar erros de Bad Request.
+- É importante lembrar que, caso o projeto seja colocado em produção, será necessário revogar a permissão dos usuários de 
+adicionar novos cargos.
 <section id="userEndpoint"></section>
 
 ### Endpoints de Usuário
