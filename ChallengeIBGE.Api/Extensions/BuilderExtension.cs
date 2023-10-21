@@ -22,8 +22,6 @@ public static class BuilderExtension
     {
         builder.Services.AddDbContext<DataContext>(options =>
             options.UseSqlServer(Configuration.Database.ConnectionString, assembly => assembly.MigrationsAssembly("ChallengeIBGE.Api")));
-
-        Database.ConnectionString = Configuration.Database.ConnectionString!;
     }
 
     public static void AddJwtAuthentication(this WebApplicationBuilder builder)
