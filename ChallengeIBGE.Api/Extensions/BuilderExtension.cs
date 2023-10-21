@@ -3,6 +3,7 @@ using ChallengeIBGE.Infra.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Text;
 
 namespace ChallengeIBGE.Api.Extensions;
@@ -66,6 +67,26 @@ public static class BuilderExtension
         builder.Services.AddSwaggerGen(config =>
         {
             config.CustomSchemaIds(x => x.FullName);
+            config.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+            {
+                Name = "Autorização",
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "Bearer",
+                BearerFormat = "JWT",
+                In = ParameterLocation.Header,
+                Description = "JWT Authorization header está usando o esquema Bearer. \r\n\r\n Digite 'Bearer' [espaço] e, em seguida, seu token na entrada de texto abaixo.\r\n\r\nExemplo: \"Bearer 1safsfsdfdfd\"",
+            });
+            config.AddSecurityRequirement(new OpenApiSecurityRequirement {
+            {
+            new OpenApiSecurityScheme {
+                Reference = new OpenApiReference {
+                    Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                }
+            },
+            new string[] {}
+            }
+        });
         });
     }
 }
