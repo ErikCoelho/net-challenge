@@ -45,7 +45,7 @@ public static class AddressExtension
             return result.IsSuccess
                 ? Results.Created($"api/v1/address/create/{result.Data?.Id}", result)
                 : Results.Json(result, statusCode: result.Status);
-        }).RequireAuthorization(options => options.RequireRole("Admin"));
+        }).RequireAuthorization(options => options.RequireRole("Admin", "User"));
         #endregion
 
         #region DeleteAddress
@@ -59,7 +59,7 @@ public static class AddressExtension
             return result.IsSuccess
                 ? Results.Ok("Address deleted successfully.")
                 : Results.Json(result, statusCode: result.Status);
-        }).RequireAuthorization(options => options.RequireRole("Admin"));
+        }).RequireAuthorization(options => options.RequireRole("Admin", "User"));
         #endregion
 
         #region ListAddresses
@@ -74,7 +74,7 @@ public static class AddressExtension
             return result.IsSuccess
                 ? Results.Ok(result)
                 : Results.Json(result, statusCode: result.Status);
-        });
+        }).RequireAuthorization(options => options.RequireRole("Admin", "User"));
         #endregion
 
         #region UpdateAddress
@@ -88,7 +88,7 @@ public static class AddressExtension
             return result.IsSuccess
                 ? Results.Ok(result)
                 : Results.Json(result, statusCode: result.Status);
-        }).RequireAuthorization(options => options.RequireRole("Admin"));
+        }).RequireAuthorization(options => options.RequireRole("Admin", "User"));
         #endregion
     }
 }
