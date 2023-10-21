@@ -32,15 +32,15 @@ ao formar grupos para o desenvolvimento do projeto, bem como na sua comunidade n
 <section id="projeto"> </section>
 
 ## 📋 Projeto
-- O Sistema de Gerenciamento de Dados do IBGE é uma aplicação web construída para facilitar a consulta, atualização, exclusão e criação de registros em uma base de dados simulada do Instituto Brasileiro de Geografia e Estatísticas (IBGE).
+- O Sistema de Gerenciamento de Dados do IBGE é uma API construída para facilitar a consulta, atualização, exclusão e criação de registros em uma base de dados simulada do Instituto Brasileiro de Geografia e Estatísticas (IBGE).
 
 <br>
 <section id="recursos"></section>
 
 ## 📃Principais Recursos</h2>
 1. Consulta de Dados: Os usuários podem realizar consultas na base de dados simulada do IBGE para obter informações como:
-	- Cidades de um Estado
-	- Pesquisar uma Cidade 
+	- Pesquisar por um Estado e suas cidades
+	- Pesquisar por cidades com determinado nome
 2. Gerenciamento de Usuários: O projeto oferece um sistema de cadastro de usuários com autenticação por email e senha, garantindo que apenas pessoas autorizadas tenham acesso à determinadas funcionalidades.
 3. Segurança de Senhas: Por questão de segurança, todas as senhas são armazenadas de forma criptografada, garantindo que ninguém, nem mesmo os administradores do sistema, tenham acesso direto às senhas dos usuários.
 4. Autorização e Controle de Acesso: Algumas partes da API exigem níveis de permissão específicos, com cargos e privilégios associados
