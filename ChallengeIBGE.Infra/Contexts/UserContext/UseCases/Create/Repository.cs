@@ -19,9 +19,18 @@ public class Repository : IRepository
         .AnyAsync(x => x.Email.Address == email, cancellationToken: cancellationToken);
     }
 
+    public Role? GetRoleByName(string role)
+        => _context.Roles.FirstOrDefault(x => x.Name == role);
+
     public async Task SaveAsync(User user, CancellationToken cancellationToken)
     {
         await _context.Users.AddAsync(user, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async void SaveRole(Role userRole)
+    {
+        await _context.Roles.AddAsync(userRole);
+        await _context.SaveChangesAsync();
     }
 }

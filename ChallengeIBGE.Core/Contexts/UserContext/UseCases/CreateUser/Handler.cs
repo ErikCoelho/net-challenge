@@ -31,7 +31,7 @@ public class Handler : IRequestHandler<Request, Response>
         User? user;
         try
         {
-            user = CreateUser(request);
+            user = CreateUser(_repository, request);
         }
         catch
         {
@@ -68,9 +68,23 @@ public class Handler : IRequestHandler<Request, Response>
         #endregion
     }
 
-    public static User CreateUser(Request request)
+    public static User CreateUser(IRepository _repository, Request request)
     {
         User user = new(request.FirstName, request.LastName, request.Email.ToLower(), request.Password);
+
+        Role? userRole = _repository.GetRoleByName("User");
+
+        userRole ??= CreateRole(_repository);
+
+        user.AddRole(userRole);
+
         return user;
+    }
+
+    public static Role CreateRole(IRepository _repository)
+    {
+        var userRole = new Role(Guid.NewGuid(), "User");
+        _repository.SaveRole(userRole);
+        return userRole;
     }
 }
