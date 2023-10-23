@@ -34,6 +34,8 @@ ao formar grupos para o desenvolvimento do projeto, bem como na sua comunidade n
 ## 📋 Projeto
 - O Sistema de Gerenciamento de Dados do IBGE é uma API construída para facilitar a consulta, atualização, exclusão e criação de registros em uma base de dados simulada do Instituto Brasileiro de Geografia e Estatísticas (IBGE).
 
+Link: https://challengeibge.azurewebsites.net/swagger/index.html
+
 <br>
 <section id="recursos"></section>
 
