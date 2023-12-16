@@ -60,8 +60,8 @@ public static class BuilderExtension
             config.CustomSchemaIds(x => x.FullName);
             config.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
             {
-                Name = "Autorização",
-                Type = SecuritySchemeType.ApiKey,
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
                 Scheme = "Bearer",
                 BearerFormat = "JWT",
                 In = ParameterLocation.Header,
