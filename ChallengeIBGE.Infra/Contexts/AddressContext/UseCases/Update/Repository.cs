@@ -2,6 +2,7 @@
 using ChallengeIBGE.Core.Contexts.AddressContext.Entities;
 using ChallengeIBGE.Core.Contexts.AddressContext.UseCases.UpdateAddress.Contracts;
 using ChallengeIBGE.Infra.Data;
+using ChallengeIBGE.Infra.SQL.SqlStatements;
 using Dapper;
 using Microsoft.Data.SqlClient;
 
@@ -11,34 +12,19 @@ public class Repository : IRepository
 {
     public async Task<Address?> GetAddressByIdAsync(int id, CancellationToken cancellationToken)
     {
-        using var connection = new SqlConnection(Configuration.Database.ConnectionString);
+        await using var connection = new SqlConnection(Configuration.Database.ConnectionString);
         await connection.OpenAsync(cancellationToken).ConfigureAwait(false);
-
-        var sql = "SELECT [Id], [State], [City] FROM[dbo].[Address] WHERE [Id] = @id";
-
-        using var command = (SqlCommand)connection.CreateCommand();
-        command.CommandText = sql;
-        command.Parameters.AddWithValue("@id", id);
-
-        Address? address = await connection.QuerySingleOrDefaultAsync<Address>(sql, new { id }).ConfigureAwait(false);
-
+        var sql = AddressSqlStatement.GetAddressById();
+        var address = await connection.QuerySingleOrDefaultAsync<Address>(sql, new { Id = id}).ConfigureAwait(false);
         return address;
     }
 
     public async Task<bool> SaveAsync(Address address, CancellationToken cancellationToken)
     {
-        using var connection = new SqlConnection(Configuration.Database.ConnectionString);
+        await using var connection = new SqlConnection(Configuration.Database.ConnectionString);
         await connection.OpenAsync(cancellationToken).ConfigureAwait(false);
-
-        var sql = "UPDATE [dbo].[Address] SET [State] = @State, [City] = @City WHERE [Id] = @Id";
-
-        using var command = (SqlCommand)connection.CreateCommand();
-        command.CommandText = sql;
-        command.Parameters.AddWithValue("@Id", address.Id);
-        command.Parameters.AddWithValue("@State", address.State);
-        command.Parameters.AddWithValue("@City", address.City);
-
-        int affectedRows = await command.ExecuteNonQueryAsync(cancellationToken).ConfigureAwait(false);
+        var sql = AddressSqlStatement.UpdateAddressById();
+        int affectedRows = await connection.ExecuteAsync(sql, new { address.State, address.City, address.Id}).ConfigureAwait(false);
         return affectedRows > 0;
     }
 }
